@@ -1,0 +1,64 @@
+中文
+English
+图特01开源智能车
+tute01 Open-Source Smart Car
+让教育尽可能普及，不受限于资源
+让开源尽可能实用，不拘泥于高端
+Open · Innovative · Exploring the Infinite Possibilities of Autonomous Driving
+工作室网站
+Official Website
+项目教学网址
+Official Website
+项目介绍
+Project Introduction
+图特01智能车开源方案是一个超低成本智能车硬件方案（低至350元）且大体积高承载能力，易于制作，
+旨在为预算有限的智能驾驶、路径规划以及ROS2初学者提供一个低成本易实现的方案。
+项目团队为冷狼科技团队——由天津多所理工及师范类院校的研究生及本科生组建。
+冷狼科技专注非标嵌入式开发以及智能车教具研发，以及各类非标产品定制。
+Tuto01 Smart Car is a comprehensive open-source autonomous driving platform designed for learning machine vision, artificial intelligence, and control algorithms. Based on powerful microcontroller and HD camera, it enables object detection, visual tracking, and automatic obstacle avoidance.
+ROS2
+arduino
+ros2
+SLAM
+项目团队
+Project Team
+核心成员
+王欢
+连士成
+叶方舟
+辅助成员
+刘桐玮
+文档编写与测试
+樊科
+项目协调与推广
+张凯熙
+硬件测试工程师
+学术指导
+段教授
+杨教授
+项目资源
+Project Resources
+源代码
+完整项目源代码及示例程序
+下位机代码仓库
+开发文档
+详细开发指南与API文档
+在线文档
+视频教程
+从组装到编程的完整教程
+观看教程
+购买套件
+bom表（提取码hm2w）
+下载bom表
+视频演示
+Video Demo
+更多教学视频，请访问我们的视频中心：
+tuto01.lenglang.xyz/videos
+For more tutorial videos, please visit our video center:
+tuto01.lenglang.xyz/videos
+冷狼科技
+官方网站
+GitHub
+微信公众号
+联系我们
+© 2023-2025 冷狼科技 - 图特01开源智能车项目 - 保留所有权利

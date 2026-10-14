@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冷狼电子工作室</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; background: #f6f8fb; color: #3d392f; line-height: 1.8; }
+.nav { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(30,28,24,0.96); border-bottom:1px solid rgba(59,111,182,0.3); }
+.nav-wrap { max-width:1100px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; height:56px; }
+.nav-brand { display:flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:700; color:#6b9fd4; text-decoration:none; letter-spacing:1px; }
+.nav-brand img { height:34px; width:auto; border-radius:4px; }
+.nav-links { display:flex; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:6px 14px; font-size:0.88rem; color:#7a8aaa; border-radius:3px; transition:all 0.2s; text-decoration:none; }
+.nav-links a:hover, .nav-links a.active { color:#6b9fd4; background:rgba(59,111,182,0.1); }
+.hero { margin-top:56px; padding:36px 20px 30px; text-align:center; background:linear-gradient(180deg, #2a2520 0%, #1e1c18 100%); }
+.hero h1 { font-size:2.2rem; font-weight:700; color:#6b9fd4; margin-bottom:6px; letter-spacing:4px; }
+.hero .sub { color:#999080; font-size:0.95rem; margin-bottom:20px; }
+.hero .tags { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.hero .tags span { padding:5px 16px; border:1px solid rgba(59,111,182,0.2); border-radius:20px; font-size:0.8rem; color:#7a8aaa; }
+.section { padding:40px 20px; }
+.section .wrap { max-width:1100px; margin:0 auto; }
+.sec-title { text-align:center; margin-bottom:28px; }
+.sec-title h2 { font-size:1.5rem; font-weight:700; color:#2d2a24; margin-bottom:4px; }
+.sec-title p { color:#888070; font-size:0.85rem; }
+.sec-title .line { width:40px; height:3px; background:#3b6fb6; margin:8px auto 0; border-radius:2px; }
+.section:nth-child(even) { background:#eef1f6; }
+.about-imgs { margin-bottom:28px; }
+.about-imgs .img-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.about-imgs .img-card { border-radius:8px; overflow:hidden; border:1px solid #ddd8cc; }
+.about-imgs .img-card img { width:100%; height:340px; object-fit:cover; display:block; }
+.about-txt { max-width:800px; margin:0 auto; text-align:center; }
+.about-txt h3 { font-size:1.15rem; color:#2d2a24; margin-bottom:10px; }
+.about-txt p { color:#5a5446; margin-bottom:8px; font-size:0.92rem; }
+.about-qr { display:flex; gap:24px; justify-content:center; align-items:center; margin-top:24px; flex-wrap:wrap; }
+.about-qr .qr-item { text-align:center; }
+.about-qr .qr-item img { width:280px; height:280px; border-radius:8px; display:block; margin:0 auto 6px; border:2px solid #3b6fb6; }
+.about-qr .qr-item span { font-size:0.85rem; color:#5a5446; font-weight:600; }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; }
+.card { background:#fff; border:1px solid #e5dfd0; border-radius:8px; padding:22px; transition:box-shadow 0.2s; text-decoration:none; color:#3d392f; display:block; }
+.card:hover { box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.card h3 { font-size:1rem; color:#2d2a24; margin-bottom:6px; }
+.card p { font-size:0.82rem; color:#888070; line-height:1.5; }
+.contact { background:#1e1c18; padding:20px; text-align:center; border-top:3px solid #3b6fb6; }
+.contact h3 { color:#6b9fd4; font-size:0.95rem; margin-bottom:10px; }
+.contact .items { display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:center; }
+.contact .items span { color:#7a8aaa; font-size:0.82rem; }
+.footer { background:#1e1c18; padding:20px 24px; text-align:center; border-top:3px solid #3b6fb6; }
+.footer p { color:#888070; font-size:0.78rem; margin:3px 0; }
+.footer a { color:#4a80c0; text-decoration:none; }
+.footer a:hover { color:#6b9fd4; }
+@media (max-width:768px) {
+  .about-imgs .img-row { grid-template-columns:1fr; }
+  .about-imgs .img-card img { height:220px; }
+  .hero h1 { font-size:1.7rem; }
+  .nav-links a { padding:6px 8px; font-size:0.78rem; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-brand"><img src="logo_sharp.png" alt="冷狼电子"> 冷狼电子工作室</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">首页</a></li>
+      <li><a href="downloads.html">软件下载</a></li>
+      <li><a href="custom.html">定制开发</a></li>
+      <li><a href="teaching.html">ROS2教学</a></li>
+      <li><a href="consulting.html">保研比赛</a></li>
+    <li><a href="shop.html">购买模块</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>冷狼电子工作室</h1>
+  <p class="sub">专注嵌入式 · 用心做技术</p>
+  <div class="tags">
+    <span>嵌入式开发</span>
+    <span>工业非标定制</span>
+    <span>ROS2机器人</span>
+    <span>科创竞赛指导</span>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>工作室简介</h2>
+      <p>技术为本 · 务实创新</p>
+      <div class="line"></div>
+    </div>
+    <div class="about-imgs">
+      <div class="img-row">
+        <div class="img-card"><img src="33981439c5699a5cd7e3a13b18be6ecd.jpg" alt="工作室照片1"></div>
+        <div class="img-card"><img src="3d18bcd5b6fc219ef86ced6f04b063b8.jpg" alt="工作室照片2"></div>
+        <div class="img-card"><img src="3e52c3551e92a3638eef098f90da8e4b.jpg" alt="工作室照片3"></div>
+      </div>
+    </div>
+    <div class="about-txt">
+      <h3>关于我们</h3>
+      <p>冷狼电子工作室，坐标天津，主要做嵌入式开发、工业非标设备定制、ROS2机器人教学这几块。团队都是实实在在搞技术的，在STM32/ESP32、Linux驱动、工业控制、物联网这些方向摸爬滚打了好几年，积累了不少项目经验。</p>
+      <p>除了做产品，我们也带学生。ROS2教学方面有专门的热狗01开源智能车教程，从零基础到进阶都有。还有科创比赛指导和保研咨询，带过不少天津高校的学弟学妹拿奖。</p>
+      <p>我们的想法很简单——把技术做好，把经验分享出去，帮更多人少走弯路。</p>
+      <div class="about-qr">
+        <div class="qr-item"><img src="wechat.jpg" alt="微信二维码"><span>微信</span></div>
+        <div class="qr-item"><img src="douyin.jpg" alt="抖音二维码"><span>抖音</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>我们的业务</h2>
+      <p>四大板块 · 全方位技术服务</p>
+      <div class="line"></div>
+    </div>
+    <div class="cards">
+      <a href="downloads.html" class="card"><h3>自研软件下载</h3><p>欢哥预制菜Arduino生成器、冷狼单片机音乐编曲软件</p></a>
+      <a href="custom.html" class="card"><h3>嵌入式定制开发</h3><p>STM32/ESP32方案设计、工业非标自动化设备、物联网整体方案</p></a>
+      <a href="teaching.html" class="card"><h3>热狗ROS2系列教学</h3><p>热狗01开源智能车教程、ROS2基础到进阶、源码下载</p></a>
+      <a href="consulting.html" class="card"><h3>科创比赛&保研咨询</h3><p>比赛指导、论文科研指导、保研规划，手把手带你拿奖发论文</p></a>
+    </div>
+  </div>
+</section>
+
+<div class="contact">
+  <h3>联系我们</h3>
+  <div class="items">
+    <span>📞 15122957906（王疆阔）</span>
+    <span>📧 1583025349@qq.com</span>
+    <span>📍 天津市大沽南路1310号</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2024-2026 冷狼电子工作室 · <a href="http://www.lenglang.xyz" target="_blank">www.lenglang.xyz</a></p>
+  <p><a href="https://beian.miit.gov.cn/" target="_blank">津ICP备2022001514号-1</a></p>
+</footer>
+</body>
+</html>

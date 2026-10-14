@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>热狗ROS2系列教学 - 冷狼电子工作室</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; background: #f6f8fb; color: #3d392f; line-height: 1.8; }
+
+.nav { position:fixed; top:0; left:0; width:100%; z-index:1000; background:rgba(30,28,24,0.96); border-bottom:1px solid rgba(59,111,182,0.3); }
+.nav-wrap { max-width:1100px; margin:0 auto; padding:0 20px; display:flex; align-items:center; justify-content:space-between; height:56px; }
+.nav-brand { display:flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:700; color:#6b9fd4; text-decoration:none; letter-spacing:1px; }
+.nav-brand img { height:34px; width:auto; border-radius:4px; }
+.nav-links { display:flex; gap:2px; list-style:none; }
+.nav-links a { display:block; padding:6px 14px; font-size:0.88rem; color:#7a8aaa; border-radius:3px; transition:all 0.2s; text-decoration:none; }
+.nav-links a:hover, .nav-links a.active { color:#6b9fd4; background:rgba(59,111,182,0.1); }
+
+.hero { margin-top:56px; background:linear-gradient(160deg, #1e1c18 0%, #2d2820 50%, #1e1c18 100%); padding:50px 20px 40px; text-align:center; }
+.hero h1 { font-size:1.8rem; font-weight:700; color:#6b9fd4; letter-spacing:2px; }
+.hero .sub { color:#999080; font-size:0.9rem; margin-top:6px; }
+
+.main { max-width:960px; margin:0 auto; padding:40px 20px; display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+@media (max-width:768px) { .main { grid-template-columns:1fr; } }
+
+.card { background:#fff; border:1px solid #e5dfd0; border-radius:10px; padding:28px; }
+.card h2 { font-size:1.15rem; color:#2d2a24; margin-bottom:14px; padding-bottom:8px; border-bottom:2px solid #3b6fb6; }
+.card p { font-size:0.88rem; color:#5a5446; margin-bottom:12px; line-height:1.7; }
+.card .hl { color:#3b6fb6; font-weight:600; }
+.card a { color:#3b6fb6; text-decoration:underline; }
+.card a:hover { color:#2a5298; }
+
+.car-imgs { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:16px; }
+.car-imgs div { text-align:center; }
+.car-imgs img { width:100%; height:140px; object-fit:cover; border-radius:8px; border:1px solid #ddd8cc; display:block; }
+.car-imgs .cap { font-size:0.72rem; color:#999080; margin-top:4px; }
+
+.video-box { margin-bottom:16px; border-radius:8px; overflow:hidden; border:1px solid #ddd8cc; }
+.video-box video { width:100%; display:block; }
+
+.code-block { background:#2a2520; color:#d4c8a0; padding:12px 16px; border-radius:6px; font-family:"Consolas","Courier New",monospace; font-size:0.78rem; overflow-x:auto; margin-bottom:12px; white-space:pre-wrap; line-height:1.4; }
+
+.link-item { display:block; padding:10px 14px; margin-bottom:6px; background:#f6f8fb; border-radius:6px; text-decoration:none; color:#3d392f; border:1px solid #ebe5d5; transition:background 0.2s; }
+.link-item:hover { background:#eef1f6; }
+.link-item .lt { font-weight:600; color:#3b6fb6; font-size:0.85rem; }
+.link-item .ld { font-size:0.76rem; color:#888070; margin-top:1px; }
+
+.full { grid-column:1/-1; }
+
+.contact { background:#1e1c18; padding:20px; text-align:center; border-top:3px solid #3b6fb6; }
+.contact h3 { color:#6b9fd4; font-size:0.95rem; margin-bottom:10px; }
+.contact .items { display:flex; flex-wrap:wrap; gap:10px 20px; justify-content:center; }
+.contact .items span { color:#7a8aaa; font-size:0.82rem; }
+
+.footer { background:#1e1c18; padding:20px 24px; text-align:center; border-top:1px solid rgba(59,111,182,0.2); }
+.footer p { color:#888070; font-size:0.78rem; margin:3px 0; }
+.footer a { color:#4a80c0; text-decoration:none; }
+.footer a:hover { color:#6b9fd4; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-brand"><img src="logo_sharp.png" alt="冷狼电子"> 冷狼电子工作室</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="downloads.html">软件下载</a></li>
+      <li><a href="custom.html">定制开发</a></li>
+      <li><a href="teaching.html" class="active">ROS2教学</a></li>
+      <li><a href="consulting.html">保研比赛</a></li>
+    <li><a href="shop.html">购买模块</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>热狗ROS2系列教学</h1>
+  <p class="sub">热狗01开源智能车 · 从入门到实战</p>
+</div>
+
+<div class="main">
+
+  <!-- 左列：热狗01介绍 -->
+  <div class="card">
+    <h2>关于热狗01开源智能车</h2>
+    <p>热狗01是冷狼电子工作室推出的一款<span class="hl">开源智能车训练底盘</span>，基于ROS2开发，适合学习机器人导航、SLAM建图、传感器驱动等核心技术。STM32主控 + 树莓派上位机，搭载激光雷达、IMU、编码器里程计，支持ROS2 Humble。</p>
+
+    <div class="car-imgs">
+      <div><img src="http://www.tute01.site/che1.jpg" alt="产品外观"><p class="cap">产品外观</p></div>
+      <div><img src="http://www.tute01.site/che2.jpg" alt="内部结构"><p class="cap">内部结构</p></div>
+      <div><img src="http://www.tute01.site/che3.jpg" alt="应用场景"><p class="cap">应用场景</p></div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin:16px 0;flex-wrap:wrap;"><a href="https://wwbxu.lanzouv.com/i2khA3flupej" target="_blank" style="display:inline-block;padding:10px 20px;background:#3b6fb6;color:#fff;font-size:0.9rem;font-weight:600;border-radius:6px;text-decoration:none;">📋 BOM表下载（提取码：hm2w）</a><a href="#" target="_blank" style="display:inline-block;padding:10px 20px;background:#2d2a24;color:#6b9fd4;font-size:0.9rem;font-weight:600;border-radius:6px;text-decoration:none;">🔧 小车底盘搭建教学</a></div>
+
+    <div class="video-box">
+      <video src="http://www.tute01.site/che.mp4" controls></video>
+    </div>
+    <p style="font-size:0.8rem;color:#999080;">▲ 实车演示视频</p>
+  </div>
+
+  <!-- 右列：ROS2教程 -->
+  <div class="card">
+    <h2>ROS2 基础指令教程</h2>
+    <p style="font-size:0.82rem;color:#888070;">由<span class="hl">冷狼电子工作室</span>编写 · Ubuntu 22.04 + ROS2 Humble</p>
+
+    <p><strong>1. 开发环境配置</strong></p>
+    <div class="code-block">sudo apt update
+sudo apt install ros-humble-desktop
+sudo apt install ros-humble-gazebo-ros-pkgs
+sudo apt install ros-humble-navigation2
+sudo apt install ros-humble-slam-toolbox</div>
+
+    <p><strong>2. 创建工作空间</strong></p>
+    <div class="code-block">mkdir -p ~/tute01_ws/src
+cd ~/tute01_ws
+colcon build
+source install/setup.bash</div>
+
+    <p><strong>3. 底盘基础控制</strong></p>
+    <div class="code-block"># 前进 0.5m/s
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" -1
+
+# 原地左转
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.5}}" -1</div>
+
+    <p><strong>4. 传感器数据读取</strong></p>
+    <div class="code-block">ros2 topic echo /scan    # 激光雷达
+ros2 topic echo /imu     # IMU姿态
+ros2 topic echo /odom    # 里程计</div>
+
+    <p><strong>5. SLAM 建图</strong></p>
+    <div class="code-block">ros2 launch slam_toolbox online_async_launch.py
+ros2 run nav2_map_server map_saver_cli -f ~/map</div>
+
+    <p><strong>6. Navigation2 自主导航</strong></p>
+    <div class="code-block">ros2 launch nav2_bringup bringup_launch.py map:=~/map.yaml</div>
+    <p>在 RViz2 里用 "2D Goal Pose" 设目标点，小车自己规划路径。</p>
+
+    <p><strong>7. Gazebo 仿真</strong></p>
+    <div class="code-block">ros2 launch tute01_gazebo tute01_world.launch.py</div>
+  </div>
+
+  <!-- 全宽：CSDN教程 -->
+  <div class="card full">
+    <h2>CSDN 基础教程推荐</h2>
+    <a class="link-item" href="https://blog.csdn.net" target="_blank"><div class="lt">ROS2 Humble 安装教程（Ubuntu 22.04）</div><div class="ld">手把手图解装ROS2，含常见报错解决</div></a>
+    <a class="link-item" href="https://blog.csdn.net" target="_blank"><div class="lt">ROS2 话题通信入门（Topic / Publisher / Subscriber）</div><div class="ld">Python + C++ 双版本代码演示</div></a>
+    <a class="link-item" href="https://blog.csdn.net" target="_blank"><div class="lt">ROS2 Service 与 Action 详解</div><div class="ld">搞懂同步/异步通信机制</div></a>
+    <a class="link-item" href="https://blog.csdn.net" target="_blank"><div class="lt">ROS2 Launch 文件编写指南</div><div class="ld">从单节点到多节点编排，写Launch不求人</div></a>
+    <a class="link-item" href="https://blog.csdn.net" target="_blank"><div class="lt">树莓派 + Micro-ROS 环境搭建</div><div class="ld">实现STM32与ROS2的串口通信</div></a>
+  </div>
+
+  <!-- 全宽：源码下载 -->
+  <div class="card full">
+    <h2>教学源码下载</h2>
+    <a class="link-item" href="https://wwd.lanzoub.com/inF8406oa1wj" target="_blank"><div class="lt">📦 热狗01完整源码包</div><div class="ld">底盘驱动 + 导航配置 + 仿真文件</div></a>
+    <a class="link-item" href="#"><div class="lt">📦 教程课件PPT合集</div><div class="ld">待补充链接</div></a>
+    <a class="link-item" href="#"><div class="lt">📦 ROS2 基础教学代码示例</div><div class="ld">待补充链接</div></a>
+    <a class="link-item" href="#"><div class="lt">📦 Gazebo仿真工程文件</div><div class="ld">待补充链接</div></a>
+  </div>
+
+</div>
+
+<div class="contact">
+  <h3>联系我们</h3>
+  <div class="items">
+    <span>📞 15122957906（王疆阔）</span>
+    <span>📧 1583025349@qq.com</span>
+    <span>📍 天津市大沽南路1310号</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2024-2026 冷狼电子工作室 · <a href="http://www.lenglang.xyz" target="_blank">www.lenglang.xyz</a></p>
+  <p><a href="https://beian.miit.gov.cn/" target="_blank">津ICP备2022001514号-1</a></p>
+</footer>
+</body>
+</html>

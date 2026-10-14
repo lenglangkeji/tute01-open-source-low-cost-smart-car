@@ -1,0 +1,1036 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图特01开源智能车 | 冷狼科技</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f0ff;
+            --secondary: #0072ff;
+            --accent: #bd00ff;
+            --dark-bg: rgba(10, 14, 23, 0.85);
+            --card-bg: rgba(20, 25, 40, 0.75);
+            --text-light: #ffffff;
+            --text-gray: #b0d9de;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-image: url('/che1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: var(--text-light);
+            font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 添加深色遮罩层增强文字可读性 */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        /* 网格科技纹理 */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 5px;
+            z-index: 100;
+            display: flex;
+            box-shadow: var(--shadow);
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            transition: var(--transition);
+        }
+        
+        .lang-btn.active {
+            background: rgba(0, 242, 255, 0.2);
+            color: var(--primary);
+        }
+
+        .lang-btn:not(.active):hover {
+            color: var(--text-light);
+        }
+        
+        header {
+            padding: 120px 30px 150px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text-gray);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: none;
+            cursor: pointer;
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #0a0e17;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 242, 255, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 242, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+        }
+        
+        .content-section {
+            max-width: 1200px;
+            margin: -80px auto 0;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 50px;
+            margin-bottom: 40px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 242, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .intro-text {
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            max-width: 800px;
+        }
+        
+        .tech-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .tech-card {
+            background: rgba(15, 20, 35, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.1), rgba(189, 0, 255, 0.1));
+            z-index: -1;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+        
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .tech-title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        
+        .tech-desc {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            aspect-ratio: 4/3;
+            position: relative;
+            transform: scale(1);
+        }
+        
+        .gallery-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,242,255,0.2), rgba(189,0,255,0.2));
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+        
+        .gallery-item:hover:before {
+            opacity: 1;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .resource-card {
+            background: rgba(15, 20, 35, 0.6);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            transition: var(--transition);
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 242, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .resource-card:hover:before {
+            transform: rotate(10deg);
+        }
+        
+        .resource-icon {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        .resource-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .resource-desc {
+            margin-bottom: 30px;
+            color: var(--text-gray);
+            font-size: 1rem;
+            min-height: 60px;
+        }
+        
+        /* 原视频容器样式保持不变，只添加新的更大视频容器样式 */
+        .video-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            height: 0;
+            padding-bottom: 56.25%;
+            position: relative;
+            background: #000;
+            margin: 60px 0 40px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* 新的更大视频容器样式 */
+        .large-video-section {
+            max-width: 1400px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+        }
+        
+        .large-video-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 60px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .large-video-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            height: 0;
+            padding-bottom: 56.25%;
+            position: relative;
+            background: #000;
+            margin: 40px 0;
+        }
+        
+        .large-video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-description {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 30px auto 0;
+            padding: 20px;
+            background: rgba(0, 242, 255, 0.05);
+            border-radius: 15px;
+        }
+        
+        footer {
+            padding: 70px 0 40px;
+            margin-top: 100px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+        
+        .team-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-card {
+            background: rgba(15, 20, 35, 0.5);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .team-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .team-title:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        
+        .team-list {
+            list-style: none;
+        }
+        
+        .team-member {
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background: rgba(0, 242, 255, 0.08);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        
+        .team-member:hover {
+            background: rgba(0, 242, 255, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+        
+        .tech-item {
+            text-align: center;
+            width: 100px;
+        }
+        
+        .tech-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            background: rgba(0, 242, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .tech-item:hover .tech-logo {
+            transform: scale(1.2);
+            background: rgba(0, 242, 255, 0.2);
+        }
+        
+        .tech-name {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .large-video-section {
+                max-width: 100%;
+                padding: 0 30px;
+            }
+            
+            .large-video-card {
+                padding: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .card {
+                padding: 35px;
+            }
+            
+            .language-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .large-video-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .resource-card {
+                padding: 30px 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            header {
+                padding: 100px 20px 130px;
+            }
+            
+            .content-section {
+                margin-top: -60px;
+            }
+            
+            .large-video-section {
+                padding: 0 15px;
+            }
+            
+            .video-description {
+                font-size: 1rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景图片通过CSS设置 -->
+    <div class="grid-pattern"></div>
+    
+    <div class="language-toggle">
+        <button class="lang-btn active" id="lang-zh">中文</button>
+        <button class="lang-btn" id="lang-en">English</button>
+    </div>
+    
+    <header>
+        <div class="header-content floating">
+            <h1 data-lang="zh">图特01开源智能车</h1>
+            <h1 data-lang="en" style="display:none">tute01 Open-Source Smart Car</h1>
+            
+            <p class="subtitle" data-lang="zh">让教育尽可能普及，不受限于资源</p>
+            <p class="subtitle" data-lang="zh">让开源尽可能实用，不拘泥于高端</p>
+            <p class="subtitle" data-lang="en" style="display:none">Open · Innovative · Exploring the Infinite Possibilities of Autonomous Driving</p>
+            
+            <div class="cta-buttons">
+                <a href="http://www.lenglang.xyz" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span data-lang="zh">工作室网站</span>
+                    <span data-lang="en" style="display:none">Official Website</span>
+                </a>
+                <a href="http://www.tute01.com/456.html" class="btn btn-secondary">
+                    <i class="fas fa-download"></i>
+                    <span data-lang="zh">项目教学网址</span>
+                    <span data-lang="en" style="display:none">Official Website</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="content-section">
+        <div class="card" id="intro">
+            <h2 class="section-title" data-lang="zh">项目介绍</h2>
+            <h2 class="section-title" data-lang="en" style="display:none">Project Introduction</h2>
+            
+            <p class="intro-text" data-lang="zh">
+                图特01智能车开源方案是一个超低成本智能车硬件方案（低至350元）且大体积高承载能力，易于制作，
+                旨在为预算有限的智能驾驶、路径规划以及ROS2初学者提供一个低成本易实现的方案。
+                项目团队为冷狼科技团队——由天津多所理工及师范类院校的研究生及本科生组建。
+                冷狼科技专注非标嵌入式开发以及智能车教具研发，以及各类非标产品定制。
+            </p>
+            <p class="intro-text" data-lang="en" style="display:none">
+                Tuto01 Smart Car is a comprehensive open-source autonomous driving platform designed for learning machine vision, artificial intelligence, and control algorithms. Based on powerful microcontroller and HD camera, it enables object detection, visual tracking, and automatic obstacle avoidance.
+            </p>
+            
+            <!-- 技术栈展示 -->
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-logo">
+                        <i class="fab fa-raspberry-pi"></i>
+                    </div>
+                    <div class="tech-name">ROS2</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-logo">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="tech-name">arduino</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-logo">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tech-name">ros2</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-logo">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="tech-name">SLAM</div>
+                </div>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="http://www.tute01.com/che1.jpg" alt="智能车产品图">
+                </div>
+                <div class="gallery-item">
+                    <img src="http://www.tute01.com/che2.jpg" alt="智能车内部结构">
+                </div>
+                <div class="gallery-item">
+                    <img src="http://www.tute01.com/che3.jpg" alt="智能车应用场景">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 项目团队卡片 -->
+        <div class="card">
+            <h2 class="section-title" data-lang="zh">项目团队</h2>
+            <h2 class="section-title" data-lang="en" style="display:none">Project Team</h2>
+            
+            <div class="team-section">
+                <div class="team-card">
+                    <h3 class="team-title" data-lang="zh">核心成员</h3>
+                    <ul class="team-list">
+                        <li class="team-member">
+                            <div class="member-name">王欢</div>
+                           
+                        </li>
+                        <li class="team-member">
+                            <div class="member-name">连士成</div>
+                            
+                        </li>
+                        <li class="team-member">
+                            <div class="member-name">叶方舟</div>
+                            
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="team-card">
+                    <h3 class="team-title" data-lang="zh">辅助成员</h3>
+                    <ul class="team-list">
+                        <li class="team-member">
+                            <div class="member-name">刘桐玮</div>
+                            <div class="member-role" data-lang="zh">文档编写与测试</div>
+                        </li>
+                        <li class="team-member">
+                            <div class="member-name">樊科</div>
+                            <div class="member-role" data-lang="zh">项目协调与推广</div>
+                        </li>
+                        <li class="team-member">
+                            <div class="member-name">张凯熙</div>
+                            <div class="member-role" data-lang="zh">硬件测试工程师</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="team-card">
+                    <h3 class="team-title" data-lang="zh">学术指导</h3>
+                    <ul class="team-list">
+                        <li class="team-member">
+                            <div class="member-name">段教授</div>
+                           
+                        </li>
+                        <li class="team-member">
+                            <div class="member-name">杨教授</div>
+                        
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" id="resources">
+            <h2 class="section-title" data-lang="zh">项目资源</h2>
+            <h2 class="section-title" data-lang="en" style="display:none">Project Resources</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="resource-title" data-lang="zh">源代码</h3>
+                    <p class="resource-desc" data-lang="zh">完整项目源代码及示例程序</p>
+                    <a href="http://www.tute01.com/111.html" class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        <span data-lang="zh">下位机代码仓库</span>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="resource-title" data-lang="zh">开发文档</h3>
+                    <p class="resource-desc" data-lang="zh">详细开发指南与API文档</p>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-book"></i>
+                        <span data-lang="zh">在线文档</span>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="resource-title" data-lang="zh">视频教程</h3>
+                    <p class="resource-desc" data-lang="zh">从组装到编程的完整教程</p>
+                    <a href="https://www.bilibili.com/video/BV1N3zYBaEkZ/?spm_id_from=333.1387.homepage.video_card.click" class="btn btn-secondary">
+                        <i class="fab fa-youtube"></i>
+                        <span data-lang="zh">观看教程</span>
+                    </a>
+                </div>
+                
+               <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="resource-title" data-lang="zh">购买套件</h3>
+                    <p class="resource-desc" data-lang="zh">bom表（提取码hm2w）</p>
+                    <a href="https://wwbxu.lanzouv.com/i2khA3flupej" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-box"></i>
+                        <span data-lang="zh">下载bom表</span>
+                    </a>
+               </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 大画面视频展示部分 - 放在最下面 -->
+    <div class="large-video-section">
+        <div class="large-video-card">
+            <h2 class="section-title" data-lang="zh">视频演示</h2>
+            <h2 class="section-title" data-lang="en" style="display:none">Video Demo</h2>
+            
+            <div class="large-video-container">
+                <iframe src="http://www.tute01.com/che.mp4" allowfullscreen></iframe>
+            </div>
+            
+            <div class="video-description">
+                <p data-lang="zh">
+                    更多教学视频，请访问我们的视频中心：
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">tuto01.lenglang.xyz/videos</a>
+                </p>
+                <p data-lang="en" style="display:none">
+                    For more tutorial videos, please visit our video center:
+                    <a href="#" style="color: var(--primary); text-decoration: none; font-weight: 500;">tuto01.lenglang.xyz/videos</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo" data-lang="zh">冷狼科技</div>
+            
+            <div class="footer-links">
+                <a href="http://www.lenglang.xyz" class="footer-link" target="_blank">
+                    <i class="fas fa-globe"></i>
+                    <span data-lang="zh">官方网站</span>
+                </a>
+                <a href="#" class="footer-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span data-lang="zh">GitHub</span>
+                </a>
+                <a href="#" class="footer-link" target="_blank">
+                    <i class="fab fa-weixin"></i>
+                    <span data-lang="zh">微信公众号</span>
+                </a>
+                <a href="#" class="footer-link" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                    <span data-lang="zh">联系我们</span>
+                </a>
+            </div>
+            
+            <p class="copyright" data-lang="zh">© 2023-2025 冷狼科技 - 图特01开源智能车项目 - 保留所有权利</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 语言切换功能
+        document.getElementById('lang-zh').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('lang-en').classList.remove('active');
+            showLanguage('zh');
+        });
+        
+        document.getElementById('lang-en').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('lang-zh').classList.remove('active');
+            showLanguage('en');
+        });
+        
+        function showLanguage(lang) {
+            // 切换所有[data-lang]元素
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = 'block';
+                    if(element.tagName === 'SPAN' && element.parentElement.className.includes('btn')) {
+                        element.parentElement.style.display = 'inline-flex';
+                    }
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+        }
+        
+        // 初始化显示中文
+        showLanguage('zh');
+        
+        // 滚动动画效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

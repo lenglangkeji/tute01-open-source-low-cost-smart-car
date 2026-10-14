@@ -1,0 +1,63 @@
+冷狼电子工作室
+首页
+软件下载
+定制开发
+ROS2教学
+保研比赛
+购买模块
+热狗ROS2系列教学
+热狗01开源智能车 · 从入门到实战
+关于热狗01开源智能车
+热狗01是冷狼电子工作室推出的一款开源智能车训练底盘，基于ROS2开发，适合学习机器人导航、SLAM建图、传感器驱动等核心技术。STM32主控 + 树莓派上位机，搭载激光雷达、IMU、编码器里程计，支持ROS2 Humble。
+产品外观
+内部结构
+应用场景
+📋 BOM表下载（提取码：hm2w）🔧 小车底盘搭建教学
+▲ 实车演示视频
+ROS2 基础指令教程
+由冷狼电子工作室编写 · Ubuntu 22.04 + ROS2 Humble
+1. 开发环境配置
+sudo apt update
+sudo apt install ros-humble-desktop
+sudo apt install ros-humble-gazebo-ros-pkgs
+sudo apt install ros-humble-navigation2
+sudo apt install ros-humble-slam-toolbox
+2. 创建工作空间
+mkdir -p ~/tute01_ws/src
+cd ~/tute01_ws
+colcon build
+source install/setup.bash
+3. 底盘基础控制
+# 前进 0.5m/s
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" -1
+# 原地左转
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.5}}" -1
+4. 传感器数据读取
+ros2 topic echo /scan # 激光雷达
+ros2 topic echo /imu # IMU姿态
+ros2 topic echo /odom # 里程计
+5. SLAM 建图
+ros2 launch slam_toolbox online_async_launch.py
+ros2 run nav2_map_server map_saver_cli -f ~/map
+6. Navigation2 自主导航
+ros2 launch nav2_bringup bringup_launch.py map:=~/map.yaml
+在 RViz2 里用 "2D Goal Pose" 设目标点，小车自己规划路径。
+7. Gazebo 仿真
+ros2 launch tute01_gazebo tute01_world.launch.py
+CSDN 基础教程推荐
+ROS2 Humble 安装教程（Ubuntu 22.04）手把手图解装ROS2，含常见报错解决
+ROS2 话题通信入门（Topic / Publisher / Subscriber）Python + C++ 双版本代码演示
+ROS2 Service 与 Action 详解搞懂同步/异步通信机制
+ROS2 Launch 文件编写指南从单节点到多节点编排，写Launch不求人
+树莓派 + Micro-ROS 环境搭建实现STM32与ROS2的串口通信
+教学源码下载
+📦 热狗01完整源码包底盘驱动 + 导航配置 + 仿真文件
+📦 教程课件PPT合集待补充链接
+📦 ROS2 基础教学代码示例待补充链接
+📦 Gazebo仿真工程文件待补充链接
+联系我们
+📞 15122957906（王疆阔）
+📧 1583025349@qq.com
+📍 天津市大沽南路1310号
+© 2024-2026 冷狼电子工作室 · www.lenglang.xyz
+津ICP备2022001514号-1
