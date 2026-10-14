@@ -59,9 +59,11 @@
 | --- | --- | --- |
 | `assets/smart-car/` | 来自 `tute01.site` 的底盘与产品照片 | 3 |
 | `assets/studio/` | 工作室 logo、工作照、微信与抖音二维码、favicon | 6 |
-| `assets/consulting/` | 来自 `lenglang.xyz/consulting.html` 的比赛指导图集 | 15 |
 
 `tute01.site` 上引用的两张图片（`favicon.ico`、`logo_sharp.png`）返回 HTTP 404，未能存档。
+
+`assets/preview/` 中的文件是由上述原图缩放生成的轻量预览图，仅作 README 嵌入之用，内容未做修改。
+`lenglang.xyz/consulting.html` 上的比赛指导图集已按项目方要求从本仓库移除。
 
 > **图片未被分析、OCR、描述或以其他方式解读。** 它们按收到的原始字节保存，以保持存档可低成本复现，并避免任何二进制内容进入文本处理流程。
 
@@ -135,10 +137,13 @@ All images referenced by the captured pages were downloaded and stored unmodifie
 | --- | --- | --- |
 | `assets/smart-car/` | Chassis and product photos from `tute01.site` | 3 |
 | `assets/studio/` | Studio logo, workshop photos, WeChat and Douyin QR codes, favicon | 6 |
-| `assets/consulting/` | Competition-coaching gallery from `lenglang.xyz/consulting.html` | 15 |
 
 Two images referenced on `tute01.site` (`favicon.ico`, `logo_sharp.png`) returned HTTP 404 and could
 not be archived.
+
+`assets/preview/` holds lightweight, downscaled derivatives of the originals above, used only for
+README rendering; their content is unmodified. The competition-coaching gallery from
+`lenglang.xyz/consulting.html` was removed from this repository at the project owner request.
 
 > **Images were not analysed, OCR'd, described or otherwise interpreted.** They are stored exactly
 > as received to keep the archive cheap to reproduce and to avoid sending binary content through

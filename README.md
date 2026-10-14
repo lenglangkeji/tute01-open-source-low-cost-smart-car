@@ -9,6 +9,21 @@
 
 ---
 
+## 预览 · Preview
+
+| 产品外观 · Appearance | 内部结构 · Internals | 应用场景 · Application |
+| --- | --- | --- |
+| ![Tute01 智能车产品外观](assets/preview/tute01-car-01.jpg) | ![Tute01 智能车内部结构](assets/preview/tute01-car-02.jpg) | ![Tute01 智能车应用场景](assets/preview/tute01-car-03.jpg) |
+
+机械 CAD（SolidWorks 装配体）源文件见 [`hardware/cad/`](hardware/cad)，说明见 [`hardware/README.md`](hardware/README.md)；
+更多源站图片见 [`assets/smart-car/`](assets/smart-car) 与 [`assets/studio/`](assets/studio)。
+
+| 冷狼电子工作室 · Lenglang Electronics Studio | 标识 · Logo |
+| --- | --- |
+| ![冷狼电子工作室](assets/preview/lenglang-workshop.jpg) | ![冷狼电子工作室 logo](assets/preview/lenglang-logo.png) |
+
+---
+
 ## 中文
 
 ### 这是什么

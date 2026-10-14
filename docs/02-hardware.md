@@ -48,6 +48,12 @@ Tute01 底盘由三个公开特征定义：
 
 产品与底盘照片位于 `../assets/smart-car/`（`tute01_che1.jpg`、`tute01_che2.jpg`、`tute01_che3.jpg`），按下载原样保存，本文不做描述。
 
+### 机械 CAD
+
+整车机械结构以 **SolidWorks 装配体**形式提供，位于 `../hardware/cad/`：1 个总装配（`装配体1.SLDASM`）
+加 17 个零件（`零件1`–`零件11`、`零件5(2)` 以及 `Mirror零件3/4/6/7/8`）。打开方式与注意事项见
+[`../hardware/README.md`](../hardware/README.md)。
+
 返回 [README](../README.md)。
 
 ---
@@ -100,6 +106,12 @@ demo video at `tute01.com/che.mp4`.
 
 > The BOM itself is a third-party hosted archive and is **not mirrored in this repository**.
 > Chassis assembly steps are delivered as video rather than as text.
+
+### Mechanical CAD
+
+The vehicle structure is provided as a **SolidWorks assembly** under `../hardware/cad/`: one
+assembly (`装配体1.SLDASM`) plus 17 parts (`零件1`–`零件11`, `零件5(2)`, and `Mirror零件3/4/6/7/8`).
+See [`../hardware/README.md`](../hardware/README.md) for how to open them.
 
 ### Photos
 

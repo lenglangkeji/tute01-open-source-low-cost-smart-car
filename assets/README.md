@@ -14,7 +14,7 @@
 | --- | --- | --- |
 | `smart-car/` | `tute01.site` | 底盘与产品照片（`che1.jpg`、`che2.jpg`、`che3.jpg`） |
 | `studio/` | `lenglang.xyz` | 工作室 logo、工作照、微信与抖音联系二维码、favicon |
-| `consulting/` | `lenglang.xyz/consulting.html` | 比赛指导图集 |
+| `preview/` | 由上述图片缩放生成 | 供 README 嵌入的轻量预览图（仅缩放，内容不变） |
 
 全部权利归原始发布方所有。详见 [`../docs/07-links-and-credits.md`](../docs/07-links-and-credits.md)。
 
@@ -31,6 +31,6 @@ described. They exist so the archive renders correctly and so the original media
 | --- | --- | --- |
 | `smart-car/` | `tute01.site` | Chassis and product photography (`che1.jpg`, `che2.jpg`, `che3.jpg`) |
 | `studio/` | `lenglang.xyz` | Studio logo, workshop photographs, WeChat and Douyin contact QR codes, favicon |
-| `consulting/` | `lenglang.xyz/consulting.html` | Competition-coaching gallery |
+| `preview/` | Downscaled from the folders above | Lightweight previews embedded in the README (resized only, content unchanged) |
 
 All rights remain with the original publisher. See [`../docs/07-links-and-credits.md`](../docs/07-links-and-credits.md).

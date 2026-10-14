@@ -49,7 +49,6 @@
 
 - `tute01.site` 上的项目与底盘照片（`che1.jpg`、`che2.jpg`、`che3.jpg`）。
 - `lenglang.xyz` 上的工作室 logo、工作照以及微信 / 抖音联系二维码。
-- `lenglang.xyz/consulting.html` 上的比赛指导图集（存放于 `../assets/consulting/`）。
 
 全部媒体均按从源站下载的原始字节保存。图片**未**经过分析、OCR 或描述。
 
@@ -108,8 +107,6 @@ Both captured sites carry the same footer, and both reference the ICP filing
 
 - Project and chassis photographs on `tute01.site` (`che1.jpg`, `che2.jpg`, `che3.jpg`).
 - Studio logo, workshop photographs, and WeChat / Douyin contact QR codes on `lenglang.xyz`.
-- Competition-coaching gallery images on `lenglang.xyz/consulting.html` (stored under
-  `../assets/consulting/`).
 
 All media is stored byte-for-byte as downloaded from the source sites. Images were deliberately
 **not** analysed, OCR'd or described.
